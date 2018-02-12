@@ -1,0 +1,58 @@
+<div class="row justify-content-center" *ngIf="currentBalance">
+    <div class="col-lg-4">
+        <div class="col-sm-12 textleft">
+            <h5> Market:  BTC-XVG</h5>
+          </div>
+        <div class="col-sm-12 textleft">
+         <h5  > Wallet Balance : {{currentBalance?.result.Balance}} {{currentBalance?.result.Currency}}</h5>
+         <br />
+         The minimum order size is .00050000 {{currentBalance?.result.Currency}}
+         <br />
+          </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-lg-4" *ngIf="buyLimit">
+      <form (ngSubmit)="SellCrypto()" #tradebuy="ngForm">
+        <div class="row">
+          <div class="col-md-12 form-group g-mb-20">
+            <label> Units  </label>
+            <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded-3 g-py-13 g-px-15" type="text" placeholder=" 0.00159571"
+              id="Quantity" required
+              [(ngModel)]="buyLimit.Quantity" name="Quantity"
+              #Quantity="ngModel" (blur)="GetMinimumUnit()">
+              <div [hidden]="Quantity.valid || Quantity.pristine"
+                    class="alert alert-danger">
+                <div [hidden]="!Quantity.hasError('required')">Quantity is required</div>
+                <!-- <div [hidden]="!Quantity.hasError('pattern')">Quantity should be only numbers</div> -->
+              </div>
+          </div>
+
+          <div class="col-md-12 form-group g-mb-20">
+            <label>Ask</label>
+              <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded-3 g-py-13 g-px-15" type="text" placeholder=" 0.00159571"
+                id="Rate" required
+                [(ngModel)]="buyLimit.Rate" name="Rate"
+                #Rate="ngModel" (blur)="GetMinimumUnit()">
+                <div [hidden]="Rate.valid || Rate.pristine"
+                      class="alert alert-danger">
+                  <div [hidden]="!Rate.hasError('required')">Rate is required</div>
+                  <!-- <div [hidden]="!Rate.hasError('pattern')">Rate  should be only numbers</div> -->
+                </div>
+            </div>
+
+            <div class="col-md-12 form-group g-mb-20">
+              <div><label>Total ฿ </label></div>
+                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded-3 g-py-13 g-px-15" type="text" placeholder=" 0.00159571"
+                  id="totalAmount" [(ngModel)]="totalAmount" name="totalAmount" readonly>
+              </div>
+
+        
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success btn-block" [disabled]="!tradebuy.form.valid">{{submitText}}</button>
+        </div>
+      </form>
+    </div>
+  </div>

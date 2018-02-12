@@ -1,0 +1,24 @@
+
+<div class="g-py-100">
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
+        <h3 class="g-color-black g-font-weight-600 text-center mb-5">Hype Exchange</h3>  
+        <form class="form-signin" role="form" name="form" (ngSubmit)="flg.form.valid && Login()" #flg="ngForm" novalidate>
+            <div class="append-icon" [ngClass]="{ 'has-error': flg.submitted && !email.valid }" style="margin-bottom: 10px">
+                <input type="email" name="email" id="username" class="form-control form-white username" placeholder="Email Id"  id="emailaddress"
+                 required [(ngModel)]="user.username"  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel" required>
+                <i class="icon-user"></i>
+            </div>
+            <div class="append-icon m-b-20" [ngClass]="{ 'has-error': flg.submitted && !password.valid }">
+                <input type="password" name="password" class="form-control form-white password" id="userpass"
+                [(ngModel)]="user.password" placeholder="********"  #password="ngModel" required>
+                <i class="icon-lock"></i>
+            </div>
+            <br>
+            <div class="text-center">
+                <button type="submit" id="submit-form" class="btn btn-block ladda-button" data-style="expand-left">{{logintext}}</button>
+            </div>
+        </form>
+      </div>
+   </div>
+</div>

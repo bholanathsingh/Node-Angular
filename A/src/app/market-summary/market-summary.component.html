@@ -1,0 +1,77 @@
+<p>
+    {{currentmarket|json}}
+  </p>
+  <br>
+<p>
+    {{marketSummary|json}}
+  </p>
+  <!-- 
+<table class="table table-hover table-dynamic">
+    <tbody>
+      <tr *ngFor="let summary of currentmarket.result; let i = index;">
+        <td>MarketName- {{summary.MarketName}}</td>
+        <td>High- {{summary.High.toFixed(8)}}</td>
+        <td>Volume- {{summary.Volume.toFixed(8)}}</td>
+        <td>Low- {{summary.Low.toFixed(8)}}</td>
+        <td>Last- {{summary.Last.toFixed(8)}}</td>
+        <td>BaseVolume- {{summary.BaseVolume}}</td>
+        <td>TimeStamp- {{summary.TimeStamp|date:'dd-MMM-yyyy HH:mm:ss'}}</td>
+        <td>Bid- {{summary.Bid.toFixed(8)}}</td>
+        <td>Ask- {{summary.Ask.toFixed(8)}}</td>
+        <td>OpenBuyOrders- {{summary.OpenBuyOrders}}</td>
+        <td>OpenSellOrders- {{summary.OpenSellOrders}}</td>
+        <td>PrevDay- {{summary.PrevDay.toFixed(8)}}</td>
+        <td>Created- {{summary.Created|date:'dd-MMM-yyyy HH:mm:ss'}}</td>
+      </tr>
+    </tbody>
+  </table>
+<br>
+<div class="la-line-scale la-dark center">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+
+
+<div class="row" *ngIf="!marketSummary.success"> 
+    <div class="col-sm-12">
+      <app-loader></app-loader>
+    </div>
+    </div>
+    <div class="row" *ngIf="marketSummary.success">
+        <div class="col-sm-12">
+            <h5><strong>BITCOIN MARKETS</strong></h5>
+            <table class="table table-hover table-dynamic">
+                <thead>
+                  <tr>
+                    <th>MARKET</th>
+                    <th>CURRENCY</th>
+                    <th>VOLUME</th>
+                    <th>% CHANGE</th>
+                    <th>LAST PRICE</th>
+                    <th>24HR HIGH</th>
+                    <th>24HR LOW</th>
+                    <th>% SPREAD</th>
+                    <th>ADDED </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let summary of marketSummary.result; let i = index;">
+                    <td>{{summary.MarketName}}</td>
+                    <td>{{summary.High}}</td>
+                    <td>{{summary.BaseVolume}}</td>
+                    <td>{{summary.OrderType.replace('_',' ')}}</td>
+                    <td class="textright">{{summary.Bid.toFixed(8)}}</td>
+                    <td class="textright">{{summary.High}}</td>
+                    <td class="textright">{{summary.Low}}</td>
+                    <td class="textright">{{summary.Low.toFixed(8)}}</td>
+                    <td class="textright">-{{summary.Low.toFixed(8)}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    -->

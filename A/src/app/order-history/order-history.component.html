@@ -1,0 +1,88 @@
+<div class="col-sm-12">
+  <div class="center"> <h4> My Orders  </h4></div>
+</div>
+
+<div class="row" *ngIf="!openOrderHistory">
+    <div class="col-sm-12">
+      <app-loader></app-loader>
+    </div>
+</div>
+<div class="row" *ngIf="openOrderHistory">
+        
+        <div class="col-sm-12">
+            <h5><strong>My Open Order ({{openOrderHistory?.result.length}})</strong></h5>
+            
+                <table class="table table-hover table-dynamic">
+                <thead>
+                  <tr>
+                    <th>Order Date</th>
+                    <th>Market</th>
+                    <th>Type</th>
+                    <th class="textright">Bid/Ask</th>
+                    <th class="textright">Unit Filled Lsk</th>
+                    <th class="textright">Unit Total Lsk</th>
+                    <th class="textright">Actual Rate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let order of openOrderHistory?.result; let i = index;">
+                    <td>{{order.Opened|date:'dd-MMM-yyyy HH:mm:ss'}}</td>
+                    <td>{{order.Exchange}}</td>
+                    <td>{{order.OrderType.replace('_',' ')}}</td>
+                    <td class="textright">{{order.Limit.toFixed(8)}}</td>
+                    <td class="textright">{{(order.Quantity).toFixed(8)}}</td>
+                    <td class="textright">{{order.QuantityRemaining.toFixed(8)}}</td>
+                    <td class="textright">{{order.Price.toFixed(8)}}</td>
+                    </tr>
+                    <tr *ngIf="openOrderHistory?.result.length==0">
+                        <td colspan="7" class="center">No Record Found</td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>  
+</div>
+
+
+<div class="row" *ngIf="!orderHistory">
+<div class="col-sm-12">
+  <app-loader></app-loader>
+</div>
+</div>
+<div class="row" *ngIf="orderHistory?.result.length>0">
+    <div class="col-sm-12">
+        <h5><strong>My Closed Order History ({{orderHistory?.result.length}})</strong></h5>
+        <table class="table table-hover table-dynamic">
+            <thead>
+              <tr>
+                <th>Close Date</th>
+                <th>Open Date</th>
+                <th>Market</th>
+                <th>Type</th>
+                <th class="textright">Bid/Ask</th>
+                <th class="textright">Unit Filled Lsk</th>
+                <th class="textright">Unit Total Lsk</th>
+                <th class="textright">Actual Rate</th>
+                <th class="textright">Cost / Proceeds</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of orderHistory?.result; let i = index;">
+                <td>{{order.Closed|date:'dd-MMM-yyyy HH:mm:ss'}}</td>
+                <td>{{order.TimeStamp|date:'dd-MMM-yyyy HH:mm:ss'}}</td>
+                <td>{{order.Exchange}}</td>
+                <td>{{order.OrderType.replace('_',' ')}}</td>
+                <td class="textright">{{order.Limit.toFixed(8)}}</td>
+                <td class="textright">{{(order.Quantity+order.QuantityRemaining).toFixed(8)}}</td>
+                <td class="textright">{{order.Quantity.toFixed(8)}}</td>
+                <td class="textright">{{order.PricePerUnit.toFixed(8)}}</td>
+                <td *ngIf="order.OrderType=='LIMIT_BUY'" class="textright">-{{((order.Quantity*order.PricePerUnit)+order.Commission).toFixed(8)}}</td>
+                <td *ngIf="order.OrderType=='LIMIT_SELL'" class="textright" >{{((order.Quantity*order.PricePerUnit)-order.Commission).toFixed(8)}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
+
+
+
+
